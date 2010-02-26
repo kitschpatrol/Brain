@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>Brain/Brain.h</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -14,14 +16,54 @@
 			<key>sourceDirectory</key>
 			<string>Brain</string>
 		</dict>
+		<dict>
+			<key>filename</key>
+			<string>README</string>
+			<key>lastUsed</key>
+			<date>2010-02-26T19:30:58Z</date>
+		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>206</integer>
 	<key>metaData</key>
-	<dict/>
+	<dict>
+		<key>Brain/Brain.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>Brain/Brain.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>Brain/Brain.h</string>
+		<string>Brain/Brain.cpp</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{752, 114}, {764, 874}}</string>
+	<string>{{769, 58}, {764, 874}}</string>
 </dict>
 </plist>
