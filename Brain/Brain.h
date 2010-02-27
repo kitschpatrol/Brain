@@ -10,11 +10,13 @@
 #define MAX_PACKET_LENGTH 32
 #define EEG_POWER_BANDS 8
 
+// TK some kind of reset timer if we don't receive a packet for >3 seconds?
+
 class Brain {
 	public:
 	  // TK Support for soft serials
 		Brain(HardwareSerial &_brainSerial);	
-    void update();
+    boolean update();
     boolean sendCSV;
     boolean noisyErrors;
     boolean debug;
@@ -31,6 +33,10 @@ class Brain {
     unsigned long getHighBeta();
     unsigned long getLowGamma();
     unsigned long getMidGamma();
+    
+    char* getCSV();
+
+
 
   private:
     HardwareSerial* brainSerial;    
@@ -55,6 +61,8 @@ class Brain {
     byte signalQuality;
     byte attention;
     byte meditation;
+
+		boolean freshPacket;
     
     // Lighter to just make this public, instead of using the getter?
     unsigned long eegPower[EEG_POWER_BANDS];
