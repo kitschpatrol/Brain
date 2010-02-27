@@ -18,14 +18,16 @@ void setup() {
   Serial.begin(9600);
   
  // Send detailed packet info.
-  brain.sendCSV = true;
-  brain.debug = true;
-  brain.noisyErrors = false; 
+//  brain.debug = true;
+//  brain.noisyErrors = false; 
   
 }
 
 void loop() {
   // Grabs the brain data and sends CSV out over the hardware serial.
   // Expect packets about once per second.
-  brain.update();
+  if(brain.update()) {
+    Serial.println(brain.getCSV());
+    //Serial.println(brain.getDelta());  
+  }
 }
