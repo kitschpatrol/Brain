@@ -14,13 +14,20 @@
 
 class Brain {
 	public:
-		// TK Support for soft serials
+		// TK Support for soft serials.
 		Brain(HardwareSerial &_brainSerial);	
-		boolean update();
-		boolean sendCSV;
-		boolean noisyErrors;
-		boolean debug;
 
+		// Run this in the main loop.
+		boolean update();
+
+		// String with most recent error.
+		char* getErrors();
+
+		// Returns comme-delimited string of all available brain data.
+		// Sequence is as below.
+		char* getCSV();
+
+		// Individual pieces of brain data.
 		byte getSignalQuality();
 		byte getAttention();
 		byte getMediation();
@@ -33,10 +40,6 @@ class Brain {
 		unsigned long getHighBeta();
 		unsigned long getLowGamma();
 		unsigned long getMidGamma();
-		
-		char* getCSV();
-
-
 
 	private:
 		HardwareSerial* brainSerial;		
@@ -57,6 +60,8 @@ class Brain {
 		void init();
 		void printCSV(); // maybe should be public?		 
 		void printDebug();
+		
+		char* latestError;
 
 		byte signalQuality;
 		byte attention;

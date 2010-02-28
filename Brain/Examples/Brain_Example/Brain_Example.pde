@@ -27,6 +27,7 @@ void loop() {
 	// Expect packets about once per second.
 	if(brain.update()) {
 		Serial.println(brain.getCSV());
+		Serial.println(brain.getErrors());
 		//Serial.println(brain.getDelta());	 
 	}
 }
