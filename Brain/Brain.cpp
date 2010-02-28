@@ -43,7 +43,7 @@ boolean Brain::update() {
 		
 			// First byte after the sync bytes is the length of the upcoming packet.
 			if (packetIndex == 0) {
-				packetLength = latestByte;		
+				packetLength = latestByte;
 
 				// Catch error if packet is too long
 				if (packetLength > MAX_PACKET_LENGTH) {
@@ -58,7 +58,7 @@ boolean Brain::update() {
 				// Print them here
 
 				// Store the byte in an array for parsing later.
-				packetData[packetIndex - 1] = latestByte;		
+				packetData[packetIndex - 1] = latestByte;
 
 				// Keep building the checksum.
 				checksumAccumulator += latestByte;
@@ -67,8 +67,8 @@ boolean Brain::update() {
 				// We're at the end of the data payload.
 				
 				// Check the checksum.
-				checksum = latestByte;							 
-				checksumAccumulator =	 255 - checksumAccumulator;
+				checksum = latestByte;
+				checksumAccumulator = 255 - checksumAccumulator;
 
 				// Do they match?
 				if (checksum == checksumAccumulator) {
@@ -93,7 +93,7 @@ boolean Brain::update() {
 				}
 				else {
 					// Checksum mismatch, send an error.
-					if (noisyErrors) brainSerial->println("ERROR: Checksum mismatch.");					 
+					if (noisyErrors) brainSerial->println("ERROR: Checksum mismatch.");
 					if (debug) printPacket();
 				}
 				// End of packet
@@ -102,11 +102,11 @@ boolean Brain::update() {
 				inPacket = false;
 			}
 			
-			packetIndex++;				 
+			packetIndex++;
 		}
 		
 		// Look for the start of the packet
-		if ((latestByte == 170) && (lastByte == 170) && !inPacket) {		
+		if ((latestByte == 170) && (lastByte == 170) && !inPacket) {
 			// Start of packet
 			inPacket = true;
 			packetIndex = 0;
@@ -168,13 +168,13 @@ boolean Brain::parsePacket() {
 
 				// Extract the values. Possible memory savings here by creating three temp longs?
 				for(int j = 0; j < EEG_POWER_BANDS; j++) {
-					eegPower[j] = ((unsigned long)packetData[++i] << 16) | ((unsigned long)packetData[++i] << 8) | (unsigned long)packetData[++i];				
+					eegPower[j] = ((unsigned long)packetData[++i] << 16) | ((unsigned long)packetData[++i] << 8) | (unsigned long)packetData[++i];
 				}
 
 				hasPower = true;
 				// This seems to happen once during start-up on the force trainer. Strange.
 
-				break;				
+				break;
 			default:
 				return false;
 		}
@@ -187,14 +187,14 @@ void Brain::printCSV() {
 	// Print the CSV over serial
 	brainSerial->print(signalQuality, DEC);
 	brainSerial->print(",");
-	brainSerial->print(attention, DEC);						 
+	brainSerial->print(attention, DEC);
 	brainSerial->print(",");
-	brainSerial->print(meditation, DEC);		
+	brainSerial->print(meditation, DEC);
 
 	if (hasPower) {
 		for(int i = 0; i < EEG_POWER_BANDS; i++) {
-			brainSerial->print(",");							
-			brainSerial->print(eegPower[i], DEC);		 
+			brainSerial->print(",");
+			brainSerial->print(eegPower[i], DEC);
 		}
 	}
  
@@ -203,7 +203,7 @@ void Brain::printCSV() {
 
 char* Brain::getCSV() {
 	// spit out a big string?
-	// find out how big this really needs to be	
+	// find out how big this really needs to be 
 	// should be popped off the stack once it goes out of scope?
 	// make the character array as small as possible
 	
@@ -232,7 +232,7 @@ char* Brain::getCSV() {
 			eegPower[7]
 		);
 		
-		return csvBuffer;		
+		return csvBuffer;
 	}
 	else {
 		// With current hardware
@@ -243,15 +243,15 @@ char* Brain::getCSV() {
 		// -------------------------
 		// 12 characters
 		
-		char csvBuffer[12];			
+		char csvBuffer[12];
 		
 		sprintf(csvBuffer,"%d,%d,%d",
 			signalQuality,
 			attention,
-			meditation																
+			meditation
 		);
 		
-		return csvBuffer;			
+		return csvBuffer;
 	}
 }
 

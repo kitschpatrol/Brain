@@ -17,15 +17,15 @@ NewSoftSerial brainSerial(2, 3);
 Brain brain(brainSerial, Serial);
 
 void setup() {
- // Start the hardware serial.
- Serial.begin(9600);
- 
- // Send detailed packet info.
- brain.debug = true;
+	// Start the hardware serial.
+	Serial.begin(9600);
+
+	// Send detailed packet info.
+	brain.debug = true;
 }
 
 void loop() {
-  // Grabs the brain data and sends CSV out over the hardware serial.
-  // Expect packets about once per second.
-  brain.update();
+	// Grabs the brain data and sends CSV out over the hardware serial.
+	// Expect packets about once per second.
+	brain.update();
 }
