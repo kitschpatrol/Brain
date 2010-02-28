@@ -1,7 +1,48 @@
-Coming soon
+LIBRARY OVERVIEW
+================
+Brain is an Arduino Library for parsing data from Neurosky-based EEG units. Tested units include the Star Wars Force Trainer and Mattel MindFlex.
+
+It's designed to make it simple to send out an ASCII string of comma-separated values over serial, or to access processed brain wave information directly in your Arduino sketch. See the examples for code demonstrating each use case.
+
+Instructions for the hardware-end of this hack are available here: http://example.com
+
+The .getCSV() function returns a string (well, char*) listing the most recent brain data, in the following format:
+"signal strength, attention, meditation, delta, theta, low alpha, high alpha, low beta, high beta, low gamma, high gamma"
+
+
+INSTALLATION
+============
+Decompress the zip and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the mac, this is ~/Documents/Arduino by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
+
+
+MINUTIAE
+========
+Note that the connection to the Neurosky headset is half-duplex — it will use up the RX pin on your Arduino, but you will still be able to send data back to a PC via USB. (Although in this case you won't be able to send data to the Arduino from the PC.)
+
+You may wish to read brain data over a software serial connection instead of the Arduino's hardware serial (this frees up the hardware serial for full-duplex operation). I've tested the library with the Software Serial library distributed with the Arduino environment, and also with the excellent NewSoftSerial library (http://arduiniana.org/libraries/NewSoftSerial), it works fine with both. HOWEVER, switching from the default hardware serial to software serial requires modification of the brain library. I'm looking for a more flexible solution, but for now feel free to contact me if you need help reconfiguring the library to work with software serial.
+
+The MindFlex provides access to more brain data than the Force Trainer — in addition to the signal strength, attention and meditation values, the MindFlex gives access to 8 bands of EEG power data.
+
+Brain data comes in quite slowly... expect a fresh packet every second or so.
+
+
+CONTACT
+========
+Eric Mika
+ermika@gmail.com
+http://ericmika.com/itp
+
+
+COLOPHON
+========
+Created by Eric Mika at NYU ITP in the winter of 2010.
+
+My thanks to Tom Igoe for his assistance during development. Thanks also to my collaborators Sofy Yuditskaya and Arturo Vidich.
+
+
+
 
 
 Notes to self:
-
 More info on passing Serial objects
 http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1264179436
