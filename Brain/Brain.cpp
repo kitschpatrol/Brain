@@ -12,10 +12,6 @@ Brain::Brain(HardwareSerial &_brainSerial) {
 void Brain::init() {
 	brainSerial->begin(9600);
 
-	sendCSV = false;
-	noisyErrors = false;
-	debug = false;
-
 	freshPacket = false;
 	inPacket = false;
 	packetIndex = 0;
@@ -29,11 +25,11 @@ void Brain::init() {
 	attention = 0;
 	meditation = 0;
 
-	clearEegPower();
-	
+	clearEegPower();	
 }
 
 boolean Brain::update() {
+	latestError = "";
 
 	if (brainSerial->available()) {
 		latestByte = brainSerial->read();
@@ -49,6 +45,7 @@ boolean Brain::update() {
 				if (packetLength > MAX_PACKET_LENGTH) {
 					// Packet exceeded max length
 					// Send an error
+					latestError = "ERROR: Packet too long";
 					inPacket = false;
 				}
 			}
@@ -75,26 +72,18 @@ boolean Brain::update() {
 
 					// Parse the data. parsePacker() returns true if parsing succeeds.
 					if (parsePacket()) {
-						// send the CSV out over serial
-						
-						// ??? Seems to work fine, but is this an issue when
-						// ??? the printer doesn't actually point anyhwere?
-						// ??? e.g. when the first constructor is used?
-						if (debug) printDebug();
-						if (debug) printPacket();
-						
 						freshPacket = true;
 					}
 					else {
 						// Parsing failed, send an error.
-						if (noisyErrors) brainSerial->println("ERROR: Packet parsing failed.");
-						if (debug) printPacket();						 
+						latestError = "ERROR: Could not parse";
+						// good place to print the packet if debugging
 					}
 				}
 				else {
 					// Checksum mismatch, send an error.
-					if (noisyErrors) brainSerial->println("ERROR: Checksum mismatch.");
-					if (debug) printPacket();
+					latestError = "ERROR: Checksum";
+					// good place to print the packet if debugging
 				}
 				// End of packet
 				
@@ -201,6 +190,10 @@ void Brain::printCSV() {
 	brainSerial->println("");
 }
 
+char* Brain::getErrors() {
+	return latestError;
+}
+
 char* Brain::getCSV() {
 	// spit out a big string?
 	// find out how big this really needs to be 
@@ -235,7 +228,6 @@ char* Brain::getCSV() {
 		return csvBuffer;
 	}
 	else {
-		// With current hardware
 		// With current hardware, at most we would have...
 		// 3 x 3 char bytes
 		// 2 x 1 char commas
