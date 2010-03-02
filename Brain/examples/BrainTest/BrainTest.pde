@@ -24,14 +24,14 @@ void setup() {
 void loop() {
 	// Expect packets about once per second.
 	if (brain.update()) {
-		Serial.println(brain.getCSV());
+		Serial.println(brain.readCSV());
 		
 		// Attention runs from 0 to 100.
-		interval = (100 - brain.getAttention()) * 10;
+		interval = (100 - brain.readAttention()) * 10;
 	}
 	
 	// Make sure we have a signal.
-	if(brain.getSignalQuality() == 0) {
+	if(brain.readSignalQuality() == 0) {
 		
 		// Blink the LED.
 	  if (millis() - previousMillis > interval) {
