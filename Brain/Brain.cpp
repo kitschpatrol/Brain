@@ -309,7 +309,7 @@ byte Brain::getAttention() {
 	return attention;
 }
 
-byte Brain::getMediation() {
+byte Brain::getMeditation() {
 	return meditation;
 }
 

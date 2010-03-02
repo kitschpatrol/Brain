@@ -5,7 +5,7 @@
 
 #include <Brain.h>
 
-// Set up the brain parser, pass it the hardware serial port you want to listen on.
+// Set up the brain parser, pass it the hardware serial object you want to listen on.
 Brain brain(Serial);
 
 const int ledPin = 13; // 13 is handy because it's on the board.
@@ -38,13 +38,13 @@ void loop() {
 	    // Save the last time you blinked the LED.
 	    previousMillis = millis();   
 
-	    // if the LED is off turn it on and vice-versa:
+	    // If the LED is off turn it on and vice-versa:
 	    if (ledState == LOW)
 	      ledState = HIGH;
 	    else
 	      ledState = LOW;
       
-	    // set the LED with the ledState of the variable:
+	    // Set the LED with the ledState of the variable:
 	    digitalWrite(ledPin, ledState);
 	  }	
 	}

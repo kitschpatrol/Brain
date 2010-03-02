@@ -30,7 +30,7 @@ class Brain {
 		// Individual pieces of brain data.
 		byte getSignalQuality();
 		byte getAttention();
-		byte getMediation();
+		byte getMeditation();
 		unsigned long* getPowerArray();
 		unsigned long getDelta();
 		unsigned long getTheta();
