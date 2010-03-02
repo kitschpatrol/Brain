@@ -9,6 +9,12 @@ Instructions for the hardware-end of this hack are available here: http://exampl
 The .getCSV() function returns a string (well, char*) listing the most recent brain data, in the following format:
 "signal strength, attention, meditation, delta, theta, low alpha, high alpha, low beta, high beta, low gamma, high gamma"
 
+Signal strength ranges from 0 - 200. Counterintuitively, 0 means the unit has connected successfully, and 200 means there is no signal.
+
+The attention and meditation values both run from 0 - 100. Intuitively, higher numbers represent more attention or meditation.
+
+The EEG power values — delta, theta, etc... - are a heavily filtered representation of the relative activity in different brain wavelengths. These values can not be mapped directly to physical values (e.g. volts), but are still of use when considered over time or relative to each other.
+
 
 INSTALLATION
 ============

@@ -4,7 +4,7 @@
 
 #include <Brain.h>
 
-// Set up the brain parser, pass it the hardware serial port you want to listen on.
+// Set up the brain parser, pass it the hardware serial object you want to listen on.
 Brain brain(Serial);
 
 void setup() {
