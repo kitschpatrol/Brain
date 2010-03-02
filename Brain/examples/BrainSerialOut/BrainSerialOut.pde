@@ -14,7 +14,9 @@ void setup() {
 
 void loop() {
 	// Expect packets about once per second.
+	// The .readCSV() function returns a string (well, char*) listing the most recent brain data, in the following format:
+	// "signal strength, attention, meditation, delta, theta, low alpha, high alpha, low beta, high beta, low gamma, high gamma"	
 	if (brain.update()) {
-		Serial.println(brain.getCSV());
+		Serial.println(brain.readCSV());
 	}
 }

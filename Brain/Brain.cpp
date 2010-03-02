@@ -25,11 +25,10 @@ void Brain::init() {
 	attention = 0;
 	meditation = 0;
 
-	clearEegPower();	
+	clearEegPower();
 }
 
 boolean Brain::update() {
-	latestError = "";
 
 	if (brainSerial->available()) {
 		latestByte = brainSerial->read();
@@ -45,7 +44,7 @@ boolean Brain::update() {
 				if (packetLength > MAX_PACKET_LENGTH) {
 					// Packet exceeded max length
 					// Send an error
-					latestError = "ERROR: Packet too long";
+					sprintf(latestError, "ERROR: Packet too long");
 					inPacket = false;
 				}
 			}
@@ -76,13 +75,13 @@ boolean Brain::update() {
 					}
 					else {
 						// Parsing failed, send an error.
-						latestError = "ERROR: Could not parse";
+						sprintf(latestError, "ERROR: Could not parse");
 						// good place to print the packet if debugging
 					}
 				}
 				else {
 					// Checksum mismatch, send an error.
-					latestError = "ERROR: Checksum";
+					sprintf(latestError, "ERROR: Checksum");
 					// good place to print the packet if debugging
 				}
 				// End of packet
@@ -103,7 +102,7 @@ boolean Brain::update() {
 			checksum = 0; // Technically not necessary.
 			checksumAccumulator = 0;
 			//clearPacket(); // Zeros the packet array, technically not necessarry.
-			//clearEegPower(); // Zeros the EEG power. Necessary if hasPower turns false... better off on the getter end?	 
+			//clearEegPower(); // Zeros the EEG power. Necessary if hasPower turns false... better off on the gettter end?	 
 		}
 		
 		// Keep track of the last byte so we can find the sync byte pairs.
@@ -161,7 +160,8 @@ boolean Brain::parsePacket() {
 				}
 
 				hasPower = true;
-				// This seems to happen once during start-up on the force trainer. Strange.
+				// This seems to happen once during start-up on the force trainer. Strange. Wise to wait a couple of packets before
+				// you start reading.
 
 				break;
 			default:
@@ -171,7 +171,7 @@ boolean Brain::parsePacket() {
 	return true;
 }
 
-// DEPRECATED
+// DEPRECATED, sticking around for debug use
 void Brain::printCSV() {
 	// Print the CSV over serial
 	brainSerial->print(signalQuality, DEC);
@@ -190,26 +190,17 @@ void Brain::printCSV() {
 	brainSerial->println("");
 }
 
-char* Brain::getErrors() {
+char* Brain::readErrors() {
 	return latestError;
 }
 
-char* Brain::getCSV() {
+char* Brain::readCSV() {
 	// spit out a big string?
 	// find out how big this really needs to be 
 	// should be popped off the stack once it goes out of scope?
 	// make the character array as small as possible
 	
 	if(hasPower) {
-		// With current hardware, at most we would have...
-		// 3 x 3 char bytes
-		// 8 x 10 char ulongs
-		// 10 x 1 char commas
-		// 1 x 1 char 0 (string termination)
-		// -------------------------
-		// 100 characters
-
-		char csvBuffer[100];	
 		
 		sprintf(csvBuffer,"%d,%d,%d,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
 			signalQuality,
@@ -228,15 +219,6 @@ char* Brain::getCSV() {
 		return csvBuffer;
 	}
 	else {
-		// With current hardware, at most we would have...
-		// 3 x 3 char bytes
-		// 2 x 1 char commas
-		// 1 x 1 char 0 (string termination)
-		// -------------------------
-		// 12 characters
-		
-		char csvBuffer[12];
-		
 		sprintf(csvBuffer,"%d,%d,%d",
 			signalQuality,
 			attention,
@@ -301,50 +283,50 @@ void Brain::printDebug() {
 	brainSerial->println("");	 
 }
 
-byte Brain::getSignalQuality() {
+byte Brain::readSignalQuality() {
 	return signalQuality;
 }
 
-byte Brain::getAttention() {
+byte Brain::readAttention() {
 	return attention;
 }
 
-byte Brain::getMeditation() {
+byte Brain::readMeditation() {
 	return meditation;
 }
 
-unsigned long* Brain::getPowerArray() {
+unsigned long* Brain::readPowerArray() {
 	return eegPower;
 }
 
-unsigned long Brain::getDelta() {
+unsigned long Brain::readDelta() {
 	return eegPower[0];
 }
 
-unsigned long Brain::getTheta() {
+unsigned long Brain::readTheta() {
 	return eegPower[1];
 }
 
-unsigned long Brain::getLowAlpha() {
+unsigned long Brain::readLowAlpha() {
 	return eegPower[2];
 }
 
-unsigned long Brain::getHighAlpha() {
+unsigned long Brain::readHighAlpha() {
 	return eegPower[3];
 }
 
-unsigned long Brain::getLowBeta() {
+unsigned long Brain::readLowBeta() {
 	return eegPower[4];
 }
 
-unsigned long Brain::getHighBeta() {
+unsigned long Brain::readHighBeta() {
 	return eegPower[5];
 }
 
-unsigned long Brain::getLowGamma() {
+unsigned long Brain::readLowGamma() {
 	return eegPower[6];
 }
 
-unsigned long Brain::getMidGamma() {
+unsigned long Brain::readMidGamma() {
 	return eegPower[7];
 }
