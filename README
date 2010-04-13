@@ -1,3 +1,5 @@
+Note, this branch is intended for use with the Software Serial library. Eventually, changes to the Arduino core should eliminate the need for separate branches. (e.g. there should be a generic "Serial" object from which both the hardware and software varieties can inherit.)
+
 LIBRARY OVERVIEW
 ================
 Brain is an Arduino Library for parsing data from Neurosky-based EEG headsets. Tested units include the Star Wars Force Trainer and Mattel MindFlex.
