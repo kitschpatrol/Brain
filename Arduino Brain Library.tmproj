@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Brain/Brain.cpp</string>
+	<string>Brain/examples/BrainTest/BrainTest.pde</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -20,7 +20,7 @@
 			<key>filename</key>
 			<string>README</string>
 			<key>lastUsed</key>
-			<date>2010-03-03T05:08:38Z</date>
+			<date>2010-04-13T03:16:12Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -44,37 +44,37 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>207</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>56</integer>
+			<integer>0</integer>
 		</dict>
 		<key>Brain/Brain.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>20</integer>
+				<integer>31</integer>
 				<key>line</key>
-				<integer>61</integer>
+				<integer>16</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>47</integer>
+			<integer>0</integer>
 		</dict>
 		<key>Brain/examples/BrainSerialOut/BrainSerialOut.pde</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>38</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>13</integer>
+				<integer>5</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -86,39 +86,37 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>53</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>14</integer>
+		</dict>
+		<key>Brain/keywords.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>21</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
 		</dict>
 		<key>README</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>460</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>27</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -130,13 +128,14 @@
 	<array>
 		<string>Brain/Brain.h</string>
 		<string>Brain/Brain.cpp</string>
-		<string>README</string>
 		<string>Brain/examples/BrainTest/BrainTest.pde</string>
 		<string>Brain/examples/BrainSerialOut/BrainSerialOut.pde</string>
+		<string>Brain/keywords.txt</string>
+		<string>README</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{472, 48}, {1127, 874}}</string>
+	<string>{{313, 4}, {1127, 874}}</string>
 </dict>
 </plist>
