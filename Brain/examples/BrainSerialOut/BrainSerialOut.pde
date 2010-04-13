@@ -3,15 +3,13 @@
 // Eric Mika, 2010
 
 #include <Brain.h>
-const byte neuroskyPowerPin = 4;
+
 // Set up the brain parser, pass it the hardware serial object you want to listen on.
 Brain brain(Serial);
 
 void setup() {
 	// Start the hardware serial.
 	Serial.begin(9600);
-	pinMode(neuroskyPowerPin, OUTPUT);
-	digitalWrite(neuroskyPowerPin, HIGH);	
 }
 
 void loop() {
