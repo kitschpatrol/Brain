@@ -1,6 +1,6 @@
 LIBRARY OVERVIEW
 ================
-Brain is an Arduino Library for parsing data from Neurosky-based EEG units. Tested units include the Star Wars Force Trainer and Mattel MindFlex.
+Brain is an Arduino Library for parsing data from Neurosky-based EEG headsets. Tested units include the Star Wars Force Trainer and Mattel MindFlex.
 
 It's designed to make it simple to send out an ASCII string of comma-separated values over serial, or to access processed brain wave information directly in your Arduino sketch. See the examples for code demonstrating each use case.
 
@@ -18,7 +18,7 @@ The EEG power values — delta, theta, etc... - are a heavily filtered represent
 
 INSTALLATION
 ============
-Decompress the zip and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the mac, this is ~/Documents/Arduino by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
+Decompress the zip and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the Mac, this is ~/Documents/Arduino by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
 
 
 MINUTIAE
