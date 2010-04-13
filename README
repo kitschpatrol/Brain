@@ -4,7 +4,7 @@ Brain is an Arduino Library for parsing data from Neurosky-based EEG headsets. T
 
 It's designed to make it simple to send out an ASCII string of comma-separated values over serial, or to access processed brain wave information directly in your Arduino sketch. See the examples for code demonstrating each use case.
 
-Instructions for the hardware-end of this hack are available here: http://ericmika.com/brain-hack
+Instructions for the hardware-end of this hack are available here: http://ericmika.com/itp/brain-hack
 
 The .getCSV() function returns a string (well, char*) listing the most recent brain data, in the following format:
 "signal strength, attention, meditation, delta, theta, low alpha, high alpha, low beta, high beta, low gamma, high gamma"
