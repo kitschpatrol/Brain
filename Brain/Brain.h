@@ -5,6 +5,7 @@
 #define Brain_h
 
 #include "WProgram.h"
+#include "NewSoftSerial.h"
 
 #define MAX_PACKET_LENGTH 32
 #define EEG_POWER_BANDS 8
@@ -13,9 +14,10 @@
 
 class Brain {
 	public:
-		// TK Support for soft serials. A more generic "Serial" type to inherit from would be great.
+		// This branch of the library supports the core software serial library instead of hardware serial.
+		// A more generic "Serial" type to inherit from would be great.
 		// More info on passing Serial objects: http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1264179436
-		Brain(HardwareSerial &_brainSerial);	
+		Brain(NewSoftSerial &_brainSerial);	
 
 		// Run this in the main loop.
 		boolean update();
@@ -42,7 +44,7 @@ class Brain {
 		unsigned long readMidGamma();
 
 	private:
-		HardwareSerial* brainSerial;		
+		NewSoftSerial* brainSerial;		
 		byte packetData[MAX_PACKET_LENGTH];
 		boolean inPacket;
 		byte latestByte;

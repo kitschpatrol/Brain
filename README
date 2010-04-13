@@ -1,4 +1,13 @@
-Note, this branch is intended for use with the Software Serial library. Eventually, changes to the Arduino core should eliminate the need for separate branches. (e.g. there should be a generic "Serial" object from which both the hardware and software varieties can inherit.)
+THIS IS THE SOFTWARE SERIAL BRANCH
+==================================
+Note, this branch is intended for use with the NewSoftSerial library. (The core SoftwareSerial library doesn't cut it, because it's missing certain function calls.)
+
+Grab and install the NewSoftSerial library here: http://arduiniana.org/libraries/NewSoftSerial/
+
+Eventually, changes to the Arduino core should eliminate the need for separate branches. (e.g. there should be a generic "Serial" object from which both the hardware and software varieties can inherit.)
+
+If you want to use your hardware serial pins (0 and 1, usually), then use the Master branch of this library instead.
+
 
 LIBRARY OVERVIEW
 ================

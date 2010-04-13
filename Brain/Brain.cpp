@@ -1,7 +1,8 @@
 #include "WProgram.h"
+#include "NewSoftSerial.h"
 #include "Brain.h"
 
-Brain::Brain(HardwareSerial &_brainSerial) {
+Brain::Brain(NewSoftSerial &_brainSerial) {
 	brainSerial = &_brainSerial;
 	
 	// Keep the rest of the initialization process in a separate method in case

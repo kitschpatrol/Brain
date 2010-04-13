@@ -4,9 +4,15 @@
 // Eric Mika, 2010
 
 #include <Brain.h>
+#include <NewSoftSerial.h>
 
-// Set up the brain parser, pass it the hardware serial object you want to listen on.
-Brain brain(Serial);
+// Set up the brain parser, pass it the serial object you want to listen on.
+
+// Create a NewSoftSerial connection, TX on pin 2, and RX on pin 3
+// Download the library here: http://arduiniana.org/libraries/NewSoftSerial/
+NewSoftSerial softBrain(2, 3);
+
+Brain brain(softBrain);
 
 const int ledPin = 13; // 13 is handy because it's on the board.
 long interval = 500; // Changes based on attention value.
