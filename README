@@ -32,6 +32,51 @@ INSTALLATION
 Decompress the zip and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the Mac, this is ~/Documents/Arduino by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
 
 
+FUNCTION OVERVIEW
+=================
+Brain(HardwareSerial &_brainSerial) // Instantiates the brain library on a hardware serial port.
+
+boolean update();          // Call this in your main loop to read data from the headset. Returns true if there is a 
+fresh packet.
+
+char* readErrors();          // Character string containing the most recent errors. Worth printing this out over serial 
+if you're having trouble.
+
+char* readCSV();          // Character string with all of the latest brain values in a comma-delimited format. Intended 
+to be printed over serial. The data is in this order: "signal strength, attention, meditation, delta, theta, low alpha, 
+high alpha, low beta, high beta, low gamma, high gamma"
+
+
+byte readSignalQuality();        // Returns the latest signal quality reading. 200 is high, 0 is no signal. This (and 
+the remainder of the functions) are mainly intended for use when you want the Arduino to use the brain data internally. 
+(Saves you the hassle / memory expenditure of parsing the CSV.)
+
+byte readAttention();        // Returns the NeuroSky "eSense" attention value.
+
+byte readMeditation();        // Returns the NeuroSky "eSense" meditation value.
+
+unsigned long* readPowerArray();  // Returns an array of the eight power-band (FFT) values, in the same order as the 
+CSV.
+
+unsigned long readDelta();      // Returns the delta (1-3Hz) power value, often associated with sleep.
+
+unsigned long readTheta();      // Returns the theta (4-7Hz) power value, associated with a relaxed, meditative state.
+
+unsigned long readLowAlpha();    // Returns the low alpha (8-9Hz) power value, higher when eyes are closed or you're 
+relaxed/
+
+unsigned long readHighAlpha();    // Returns the high alpha (10-12Hz) power value.
+
+unsigned long readLowBeta();     // Retursn the low beta (13-17Hz) power value, higher when you're alert and focused.
+
+unsigned long readHighBeta();    // Returns the high beta (18-30Hz) power value.
+
+unsigned long readLowGamma();    // Returns the low gamma (31-40Hz) power value, associated with multi-sensory 
+processing.
+
+unsigned long readMidGamma();    // Returns the high gamma (41-50Hz) power value.
+
+
 MINUTIAE
 ========
 Note that the connection to the Neurosky headset is half-duplex — it will use up the RX pin on your Arduino, but you will still be able to send data back to a PC via USB. (Although in this case you won't be able to send data to the Arduino from the PC.)
