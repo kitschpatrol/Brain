@@ -140,16 +140,16 @@ boolean Brain::parsePacket() {
 	
 	for (byte i = 0; i < packetLength; i++) {
 		switch (packetData[i]) {
-			case 2:
+			case 2: //0x2
 				signalQuality = packetData[++i];
 				break;
-			case 4:
+			case 4: // 0x4
 				attention = packetData[++i];
 				break;
-			case 5:
+			case 5: // 0x5
 				meditation = packetData[++i];
 				break;
-			case 131:
+			case 131: // 0x83
 				// ASIC_EEG_POWER: eight big-endian 3-byte unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
 				// The next byte sets the length, usually 24 (Eight 24-bit numbers... big endian?)
 				eegPowerLength = packetData[++i];
@@ -164,6 +164,7 @@ boolean Brain::parsePacket() {
 				// you start reading.
 
 				break;
+            // TODO: Add raw wave (0x80) support
 			default:
 				return false;
 		}
