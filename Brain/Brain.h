@@ -18,7 +18,7 @@ class Brain {
 		Brain(HardwareSerial &_brainSerial);	
 
 		// Run this in the main loop.
-		boolean update();
+		byte update();
 
 		// String with most recent error.
 		char* readErrors();
@@ -41,6 +41,13 @@ class Brain {
 		unsigned long readLowGamma();
 		unsigned long readMidGamma();
 
+		// Lighter to just make this public, instead of using the getter? -- Yes.
+		unsigned long eegPower[EEG_POWER_BANDS];
+		byte signalQuality;
+		byte attention;
+		byte meditation;
+		int rawValue;
+
 	private:
 		HardwareSerial* brainSerial;		
 		byte packetData[MAX_PACKET_LENGTH];
@@ -55,7 +62,7 @@ class Brain {
 		boolean hasPower;
 		void clearPacket();
 		void clearEegPower();
-		boolean parsePacket();
+		byte parsePacket();
 		void printPacket();
 		void init();
 		void printCSV(); // maybe should be public?		 
@@ -75,14 +82,9 @@ class Brain {
 		// 1 x 1 char 0 (string termination)
 		char latestError[23];		
 		
-		byte signalQuality;
-		byte attention;
-		byte meditation;
 
 		boolean freshPacket;
 		
-		// Lighter to just make this public, instead of using the getter?
-		unsigned long eegPower[EEG_POWER_BANDS];
 };
 
 #endif

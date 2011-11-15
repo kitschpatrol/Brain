@@ -28,8 +28,8 @@ void Brain::init() {
 	clearEegPower();
 }
 
-boolean Brain::update() {
-
+byte Brain::update() {
+    byte parse_return;
 	if (brainSerial->available()) {
 		latestByte = brainSerial->read();
 
@@ -70,7 +70,8 @@ boolean Brain::update() {
 				if (checksum == checksumAccumulator) {
 
 					// Parse the data. parsePacker() returns true if parsing succeeds.
-					if (parsePacket()) {
+					parse_return = parsePacket();
+					if (parse_return > 0x0) {
 						freshPacket = true;
 					}
 					else {
@@ -111,10 +112,10 @@ boolean Brain::update() {
 	
 	if(freshPacket) {
 		freshPacket = false;
-		return true;
+		return parse_return;
 	}
 	else {
-		return false;
+		return 0x0;
 	}
 	
 }
@@ -132,22 +133,35 @@ void Brain::clearEegPower() {
 	}
 }
 
-boolean Brain::parsePacket() {
+/**
+ * Returns a bitmask indicating what packets did we get
+ *
+ * 1st bit signalQuality
+ * 2nd bit attention
+ * 3rd bit meditation
+ * 4th bit power bands
+ * 5th bit raw value
+ */
+byte Brain::parsePacket() {
 	// Loop through the packet, extracting data.
 	// Based on mindset_communications_protocol.pdf from the Neurosky Mindset SDK.
 	hasPower = false;
 	clearEegPower();	// clear the eeg power to make sure we're honest about missing values... null would be better than 0.
+	byte return_byte;
 	
 	for (byte i = 0; i < packetLength; i++) {
 		switch (packetData[i]) {
 			case 2: //0x2
 				signalQuality = packetData[++i];
+				return_byte = return_byte | B00000001;
 				break;
 			case 4: // 0x4
 				attention = packetData[++i];
+				return_byte = return_byte | B00000010;
 				break;
 			case 5: // 0x5
 				meditation = packetData[++i];
+				return_byte = return_byte | B00000100;
 				break;
 			case 131: // 0x83
 				// ASIC_EEG_POWER: eight big-endian 3-byte unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
@@ -162,14 +176,19 @@ boolean Brain::parsePacket() {
 				hasPower = true;
 				// This seems to happen once during start-up on the force trainer. Strange. Wise to wait a couple of packets before
 				// you start reading.
+				return_byte = return_byte | B00001000;
 
 				break;
-            // TODO: Add raw wave (0x80) support
+            case 0x80:
+                rawValue = ((int)packetData[++i] << 8) | (int)packetData[++i];
+				return_byte = return_byte | B00010000;
+                break;
 			default:
-				return false;
+                // Broken packet ?
+				break;
 		}
 	}
-	return true;
+	return return_byte;
 }
 
 // DEPRECATED, sticking around for debug use
