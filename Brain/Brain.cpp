@@ -18,7 +18,7 @@ void Brain::init() {
 	packetLength = 0;
 	checksum = 0;
 	checksumAccumulator = 0;
-	eegPowerLength = 0;
+	//eegPowerLength = 0;
 	hasPower = false;
 	
 	signalQuality = 200;
@@ -147,7 +147,7 @@ byte Brain::parsePacket() {
 	// Based on mindset_communications_protocol.pdf from the Neurosky Mindset SDK.
 	hasPower = false;
 	clearEegPower();	// clear the eeg power to make sure we're honest about missing values... null would be better than 0.
-	byte return_byte;
+	byte return_byte = 0x0;
 	
 	for (byte i = 0; i < packetLength; i++) {
 		switch (packetData[i]) {
@@ -166,7 +166,11 @@ byte Brain::parsePacket() {
 			case 131: // 0x83
 				// ASIC_EEG_POWER: eight big-endian 3-byte unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
 				// The next byte sets the length, usually 24 (Eight 24-bit numbers... big endian?)
+                /**
+                 * We dont' use this value so let's skip it and just increment i
 				eegPowerLength = packetData[++i];
+				 */
+				i++;
 
 				// Extract the values. Possible memory savings here by creating three temp longs?
 				for(int j = 0; j < EEG_POWER_BANDS; j++) {
@@ -180,11 +184,24 @@ byte Brain::parsePacket() {
 
 				break;
             case 0x80:
-                rawValue = ((int)packetData[++i] << 8) | (int)packetData[++i];
+                /**
+                 * We dont' use this value so let's skip it and just increment i
+				byte rawLength = packetData[++i];
+				 */
+				i++;
+                rawValue = ((int)packetData[++i] << 8) | packetData[++i];
 				return_byte = return_byte | B00010000;
                 break;
 			default:
                 // Broken packet ?
+                /*
+                Serial.print("parsePacket UNMATCHED data 0x");
+                Serial.print(packetData[i], HEX);
+                Serial.print(" in position ");
+                Serial.print(i, DEC);
+                printPacket();
+                */
+                return 0x0;
 				break;
 		}
 	}
@@ -250,6 +267,7 @@ char* Brain::readCSV() {
 }
 
 // For debugging, print the entire contents of the packet data array.
+/*
 void Brain::printPacket() {
 	brainSerial->print("[");
 	for (byte i = 0; i < MAX_PACKET_LENGTH; i++) {
@@ -261,6 +279,20 @@ void Brain::printPacket() {
 	}
 	brainSerial->println("]");
 }
+*/
+
+void Brain::printPacket() {
+	Serial.print("[");
+	for (byte i = 0; i < MAX_PACKET_LENGTH; i++) {
+		Serial.print(packetData[i], HEX);
+ 
+			if (i < MAX_PACKET_LENGTH - 1) {
+				Serial.print(", ");
+			}
+	}
+	Serial.println("]");
+}
+
 
 void Brain::printDebug() {
 	brainSerial->println("");	 

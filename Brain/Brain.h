@@ -47,6 +47,7 @@ class Brain {
 		byte attention;
 		byte meditation;
 		int rawValue;
+		void printPacket();
 
 	private:
 		HardwareSerial* brainSerial;		
@@ -58,12 +59,11 @@ class Brain {
 		byte packetLength;
 		byte checksum;
 		byte checksumAccumulator;
-		byte eegPowerLength;
+		//byte eegPowerLength;
 		boolean hasPower;
 		void clearPacket();
 		void clearEegPower();
 		byte parsePacket();
-		void printPacket();
 		void init();
 		void printCSV(); // maybe should be public?		 
 		void printDebug();
