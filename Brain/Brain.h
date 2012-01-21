@@ -4,7 +4,7 @@
 #ifndef Brain_h
 #define Brain_h
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #define MAX_PACKET_LENGTH 32
 #define EEG_POWER_BANDS 8
