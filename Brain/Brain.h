@@ -18,7 +18,7 @@ class Brain {
 		Brain(HardwareSerial &_brainSerial);	
 
 		// Run this in the main loop.
-		byte update();
+		uint8_t update();
 
 		// String with most recent error.
 		char* readErrors();
@@ -28,9 +28,9 @@ class Brain {
 		char* readCSV();
 
 		// Individual pieces of brain data.
-		byte readSignalQuality();
-		byte readAttention();
-		byte readMeditation();
+		uint8_t readSignalQuality();
+		uint8_t readAttention();
+		uint8_t readMeditation();
 		unsigned long* readPowerArray();
 		unsigned long readDelta();
 		unsigned long readTheta();
@@ -43,33 +43,33 @@ class Brain {
 
 		// Lighter to just make this public, instead of using the getter? -- Yes.
 		unsigned long eegPower[EEG_POWER_BANDS];
-		byte signalQuality;
-		byte attention;
-		byte meditation;
+		uint8_t signalQuality;
+		uint8_t attention;
+		uint8_t meditation;
 		int rawValue;
 		void printPacket();
 
 	private:
 		HardwareSerial* brainSerial;		
-		byte packetData[MAX_PACKET_LENGTH];
-		boolean inPacket;
-		byte latestByte;
-		byte lastByte;
-		byte packetIndex;
-		byte packetLength;
-		byte checksum;
-		byte checksumAccumulator;
-		//byte eegPowerLength;
-		boolean hasPower;
+		uint8_t packetData[MAX_PACKET_LENGTH];
+		uint8_t inPacket;
+		uint8_t latestByte;
+		uint8_t lastByte;
+		uint8_t packetIndex;
+		uint8_t packetLength;
+		uint8_t checksum;
+		uint8_t checksumAccumulator;
+		//uint8_t eegPowerLength;
+		uint8_t hasPower;
 		void clearPacket();
 		void clearEegPower();
-		byte parsePacket();
+		uint8_t parsePacket();
 		void init();
 		void printCSV(); // maybe should be public?		 
 		void printDebug();
 
 		// With current hardware, at most we would have...
-		// 3 x 3 char bytes
+		// 3 x 3 char uint8_ts
 		// 8 x 10 char ulongs
 		// 10 x 1 char commas
 		// 1 x 1 char 0 (string termination)
@@ -78,12 +78,12 @@ class Brain {
 		char csvBuffer[100];
 		
 		// Longest error is
-		// 22 x 1 char bytes
+		// 22 x 1 char uint8_ts
 		// 1 x 1 char 0 (string termination)
 		char latestError[23];		
 		
 
-		boolean freshPacket;
+		uint8_t freshPacket;
 		
 };
 

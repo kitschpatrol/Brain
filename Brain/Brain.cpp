@@ -28,15 +28,15 @@ void Brain::init() {
 	clearEegPower();
 }
 
-byte Brain::update() {
-    byte parse_return;
+uint8_t Brain::update() {
+    uint8_t parse_return;
 	if (brainSerial->available()) {
 		latestByte = brainSerial->read();
 
-		// Build a packet if we know we're and not just listening for sync bytes.
+		// Build a packet if we know we're and not just listening for sync uint8_ts.
 		if (inPacket) {
 		
-			// First byte after the sync bytes is the length of the upcoming packet.
+			// First uint8_t after the sync bytes is the length of the upcoming packet.
 			if (packetIndex == 0) {
 				packetLength = latestByte;
 
@@ -49,11 +49,11 @@ byte Brain::update() {
 				}
 			}
 			else if (packetIndex <= packetLength) {
-				// Run of the mill data bytes.
+				// Run of the mill data uint8_ts.
 				
 				// Print them here
 
-				// Store the byte in an array for parsing later.
+				// Store the uint8_t in an array for parsing later.
 				packetData[packetIndex - 1] = latestByte;
 
 				// Keep building the checksum.
@@ -106,7 +106,7 @@ byte Brain::update() {
 			//clearEegPower(); // Zeros the EEG power. Necessary if hasPower turns false... better off on the gettter end?	 
 		}
 		
-		// Keep track of the last byte so we can find the sync byte pairs.
+		// Keep track of the last uint8_t so we can find the sync byte pairs.
 		lastByte = latestByte;
 	}
 	
@@ -121,14 +121,14 @@ byte Brain::update() {
 }
 
 void Brain::clearPacket() {
-	for (byte i = 0; i < MAX_PACKET_LENGTH; i++) {
+	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
 		packetData[i] = 0;
 	}	 
 }
 
 void Brain::clearEegPower() {
 	// Zero the power bands.
-	for(byte i = 0; i < EEG_POWER_BANDS; i++) {
+	for(uint8_t i = 0; i < EEG_POWER_BANDS; i++) {
 		eegPower[i] = 0;
 	}
 }
@@ -142,30 +142,30 @@ void Brain::clearEegPower() {
  * 4th bit power bands
  * 5th bit raw value
  */
-byte Brain::parsePacket() {
+uint8_t Brain::parsePacket() {
 	// Loop through the packet, extracting data.
 	// Based on mindset_communications_protocol.pdf from the Neurosky Mindset SDK.
 	hasPower = false;
 	clearEegPower();	// clear the eeg power to make sure we're honest about missing values... null would be better than 0.
-	byte return_byte = 0x0;
+	uint8_t return_byte = 0x0;
 	
-	for (byte i = 0; i < packetLength; i++) {
+	for (uint8_t i = 0; i < packetLength; i++) {
 		switch (packetData[i]) {
 			case 2: //0x2
 				signalQuality = packetData[++i];
-				return_byte = return_byte | B00000001;
+				return_uint8_t = return_byte | B00000001;
 				break;
 			case 4: // 0x4
 				attention = packetData[++i];
-				return_byte = return_byte | B00000010;
+				return_uint8_t = return_byte | B00000010;
 				break;
 			case 5: // 0x5
 				meditation = packetData[++i];
-				return_byte = return_byte | B00000100;
+				return_uint8_t = return_byte | B00000100;
 				break;
 			case 131: // 0x83
-				// ASIC_EEG_POWER: eight big-endian 3-byte unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
-				// The next byte sets the length, usually 24 (Eight 24-bit numbers... big endian?)
+				// ASIC_EEG_POWER: eight big-endian 3-uint8_t unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
+				// The next uint8_t sets the length, usually 24 (Eight 24-bit numbers... big endian?)
                 /**
                  * We dont' use this value so let's skip it and just increment i
 				eegPowerLength = packetData[++i];
@@ -180,17 +180,17 @@ byte Brain::parsePacket() {
 				hasPower = true;
 				// This seems to happen once during start-up on the force trainer. Strange. Wise to wait a couple of packets before
 				// you start reading.
-				return_byte = return_byte | B00001000;
+				return_uint8_t = return_byte | B00001000;
 
 				break;
             case 0x80:
                 /**
                  * We dont' use this value so let's skip it and just increment i
-				byte rawLength = packetData[++i];
+				uint8_t rawLength = packetData[++i];
 				 */
 				i++;
                 rawValue = ((int)packetData[++i] << 8) | packetData[++i];
-				return_byte = return_byte | B00010000;
+				return_uint8_t = return_byte | B00010000;
                 break;
 			default:
                 // Broken packet ?
@@ -205,7 +205,7 @@ byte Brain::parsePacket() {
 				break;
 		}
 	}
-	return return_byte;
+	return return_uint8_t;
 }
 
 // DEPRECATED, sticking around for debug use
@@ -270,7 +270,7 @@ char* Brain::readCSV() {
 /*
 void Brain::printPacket() {
 	brainSerial->print("[");
-	for (byte i = 0; i < MAX_PACKET_LENGTH; i++) {
+	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
 		brainSerial->print(packetData[i], DEC);
  
 			if (i < MAX_PACKET_LENGTH - 1) {
@@ -283,7 +283,7 @@ void Brain::printPacket() {
 
 void Brain::printPacket() {
 	Serial.print("[");
-	for (byte i = 0; i < MAX_PACKET_LENGTH; i++) {
+	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
 		Serial.print(packetData[i], HEX);
  
 			if (i < MAX_PACKET_LENGTH - 1) {
@@ -335,15 +335,15 @@ void Brain::printDebug() {
 	brainSerial->println("");	 
 }
 
-byte Brain::readSignalQuality() {
+uint8_t Brain::readSignalQuality() {
 	return signalQuality;
 }
 
-byte Brain::readAttention() {
+uint8_t Brain::readAttention() {
 	return attention;
 }
 
-byte Brain::readMeditation() {
+uint8_t Brain::readMeditation() {
 	return meditation;
 }
 
