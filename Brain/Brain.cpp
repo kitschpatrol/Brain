@@ -195,9 +195,9 @@ uint8_t Brain::parsePacket() {
 			default:
                 // Broken packet ?
                 /*
-                Serial.print("parsePacket UNMATCHED data 0x");
+                Serial.print(F("parsePacket UNMATCHED data 0x"));
                 Serial.print(packetData[i], HEX);
-                Serial.print(" in position ");
+                Serial.print(F(" in position "));
                 Serial.print(i, DEC);
                 printPacket();
                 */
@@ -282,15 +282,15 @@ void Brain::printPacket() {
 */
 
 void Brain::printPacket() {
-	Serial.print("[");
+	Serial.print(F("["));
 	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
 		Serial.print(packetData[i], HEX);
  
 			if (i < MAX_PACKET_LENGTH - 1) {
-				Serial.print(", ");
+				Serial.print(F(", "));
 			}
 	}
-	Serial.println("]");
+	Serial.println(F("]"));
 }
 
 
