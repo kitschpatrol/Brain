@@ -9,7 +9,10 @@ Brain::Brain(HardwareSerial &_brainSerial) {
 	init();
 }
 
+// TODO: Cast all ints and unsigned longs etc to explicit lenght types or this will crap out on Teensy3
+
 void Brain::init() {
+    // TODO: Shouldn't this be 57600 for the TGAM and other fast modules ??
 	brainSerial->begin(9600);
 
 	freshPacket = false;
