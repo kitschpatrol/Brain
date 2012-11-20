@@ -153,15 +153,15 @@ uint8_t Brain::parsePacket() {
 		switch (packetData[i]) {
 			case 2: //0x2
 				signalQuality = packetData[++i];
-				return_uint8_t = return_byte | B00000001;
+				return_byte = return_byte | B00000001;
 				break;
 			case 4: // 0x4
 				attention = packetData[++i];
-				return_uint8_t = return_byte | B00000010;
+				return_byte = return_byte | B00000010;
 				break;
 			case 5: // 0x5
 				meditation = packetData[++i];
-				return_uint8_t = return_byte | B00000100;
+				return_byte = return_byte | B00000100;
 				break;
 			case 131: // 0x83
 				// ASIC_EEG_POWER: eight big-endian 3-uint8_t unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values			 
@@ -180,7 +180,7 @@ uint8_t Brain::parsePacket() {
 				hasPower = true;
 				// This seems to happen once during start-up on the force trainer. Strange. Wise to wait a couple of packets before
 				// you start reading.
-				return_uint8_t = return_byte | B00001000;
+				return_byte = return_byte | B00001000;
 
 				break;
             case 0x80:
@@ -190,7 +190,7 @@ uint8_t Brain::parsePacket() {
 				 */
 				i++;
                 rawValue = ((int)packetData[++i] << 8) | packetData[++i];
-				return_uint8_t = return_byte | B00010000;
+				return_byte = return_byte | B00010000;
                 break;
 			default:
                 // Broken packet ?
@@ -205,7 +205,7 @@ uint8_t Brain::parsePacket() {
 				break;
 		}
 	}
-	return return_uint8_t;
+	return return_byte;
 }
 
 // DEPRECATED, sticking around for debug use
