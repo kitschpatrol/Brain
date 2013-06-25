@@ -285,15 +285,15 @@ void Brain::printPacket() {
 */
 
 void Brain::printPacket() {
-	Serial.print(F("["));
+	Serial.print("[");
 	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
 		Serial.print(packetData[i], HEX);
  
 			if (i < MAX_PACKET_LENGTH - 1) {
-				Serial.print(F(", "));
+				Serial.print(", ");
 			}
 	}
-	Serial.println(F("]"));
+	Serial.println("]");
 }
 
 
