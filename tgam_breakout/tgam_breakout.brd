@@ -1295,54 +1295,6 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 </package>
 </packages>
 </library>
-<library name="pinhead">
-<description>&lt;b&gt;Pin Header Connectors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="1X04">
-<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
-<wire x1="0" y1="0.635" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="0.635" y1="-1.27" x2="0" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-4.445" y1="1.27" x2="-3.175" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-3.175" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="-0.635" x2="-3.175" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-2.54" y1="0.635" x2="-1.905" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-0.635" y1="1.27" x2="0" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="0" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-0.635" y1="-1.27" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-1.905" y1="-1.27" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="0.635" x2="-5.08" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="-4.445" y1="1.27" x2="-5.08" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="-0.635" x2="-4.445" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-3.175" y1="-1.27" x2="-4.445" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="3.175" y1="1.27" x2="4.445" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="4.445" y1="1.27" x2="5.08" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="5.08" y1="0.635" x2="5.08" y2="-0.635" width="0.1524" layer="21"/>
-<wire x1="5.08" y1="-0.635" x2="4.445" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="3.175" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
-<wire x1="2.54" y1="-0.635" x2="3.175" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="4.445" y1="-1.27" x2="3.175" y2="-1.27" width="0.1524" layer="21"/>
-<pad name="1" x="-3.81" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="2" x="-1.27" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="3" x="1.27" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="4" x="3.81" y="0" drill="1.016" shape="long" rot="R90"/>
-<text x="-5.1562" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-5.08" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
-<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
-<rectangle x1="-4.064" y1="-0.254" x2="-3.556" y2="0.254" layer="51"/>
-<rectangle x1="3.556" y1="-0.254" x2="4.064" y2="0.254" layer="51"/>
-</package>
-</packages>
-</library>
 <library name="wirepad">
 <description>&lt;b&gt;Single Pads&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
@@ -1553,9 +1505,6 @@ design rules under a new name.</description>
 <element name="EEG_EL" library="SparkFun-Connectors" package="U.FL" value="U.FL" x="6.35" y="19.05" smashed="yes"/>
 <element name="GND_ELEL" library="SparkFun-Connectors" package="U.FL" value="U.FL" x="6.35" y="31.75"/>
 <element name="REF_EL" library="SparkFun-Connectors" package="U.FL" value="U.FL" x="6.35" y="6.35"/>
-<element name="JP1" library="pinhead" package="1X04" value="" x="26.67" y="2.54" smashed="yes">
-<attribute name="VALUE" x="21.59" y="-0.635" size="1.27" layer="27"/>
-</element>
 <element name="PAD1" library="wirepad" package="SMD2,54-5,08" value="" x="6.35" y="19.05" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="6.35" y="19.05" size="0.0254" layer="28" rot="MR0"/>
 </element>
@@ -1590,6 +1539,8 @@ design rules under a new name.</description>
 <wire x1="28.194" y1="32.512" x2="28.067" y2="32.639" width="0.1524" layer="1"/>
 <wire x1="27.178" y1="32.893" x2="27.0698" y2="33.0106" width="0.1524" layer="1"/>
 <wire x1="28.194" y1="32.512" x2="28.06294375" y2="32.402" width="0.1524" layer="1"/>
+<wire x1="27.835" y1="38.735" x2="30.585" y2="38.735" width="0" layer="19" extent="1-1"/>
+<wire x1="27.0698" y1="33.0106" x2="27.835" y2="38.735" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND_EL">
 <contactref element="X2" pad="5"/>
@@ -1611,49 +1562,28 @@ design rules under a new name.</description>
 <vertex x="23.495" y="35.56"/>
 <vertex x="20.955" y="36.195"/>
 </polygon>
+<wire x1="16.405" y1="38.735" x2="19.155" y2="38.735" width="0" layer="19" extent="1-1"/>
+<wire x1="21.0698" y1="33.0106" x2="19.155" y2="38.735" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="REF">
 <contactref element="REF" pad="P$3"/>
 <contactref element="X2" pad="3"/>
-<wire x1="17.78" y1="37.21" x2="20.065" y2="34.925" width="0.4064" layer="1" curve="90"/>
-<wire x1="20.065" y1="34.925" x2="20.32" y2="34.925" width="0.4064" layer="1"/>
-<wire x1="20.32" y1="34.925" x2="21.1554" y2="34.925" width="0.4064" layer="1"/>
-<wire x1="21.1554" y1="34.925" x2="23.0698" y2="33.0106" width="0.4064" layer="1" curve="-90"/>
+<wire x1="23.0698" y1="33.0106" x2="17.78" y2="37.21" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC">
 <contactref element="X1" pad="2"/>
 <contactref element="X1" pad="5"/>
 <contactref element="C1" pad="1"/>
 <contactref element="C2" pad="1"/>
-<wire x1="19.685" y1="3.429" x2="17.526" y2="3.429" width="0.1524" layer="1"/>
-<wire x1="17.526" y1="3.429" x2="16.51" y2="3.429" width="0.1524" layer="1"/>
-<wire x1="16.51" y1="3.429" x2="16.51" y2="3.49" width="0.1524" layer="1"/>
-<wire x1="19.685" y1="3.429" x2="19.685" y2="3.49" width="0.1524" layer="1"/>
-<wire x1="17.526" y1="7.747" x2="17.526" y2="3.429" width="0.1524" layer="1"/>
-<wire x1="17.526" y1="7.747" x2="17.415" y2="7.779" width="0.1524" layer="1"/>
-<wire x1="18.415" y1="10.795" x2="19.304" y2="11.684" width="0.1524" layer="16"/>
-<wire x1="18.415" y1="8.763" x2="18.415" y2="10.795" width="0.1524" layer="16"/>
-<wire x1="17.526" y1="7.874" x2="18.415" y2="8.763" width="0.1524" layer="16"/>
-<wire x1="19.304" y1="11.684" x2="19.415" y2="11.779" width="0.1524" layer="16"/>
-<wire x1="17.526" y1="7.874" x2="17.415" y2="7.779" width="0.1524" layer="16"/>
-<contactref element="JP1" pad="1"/>
-<wire x1="19.685" y1="2.54" x2="22.86" y2="2.54" width="0.1524" layer="1"/>
-<wire x1="19.685" y1="3.429" x2="19.685" y2="2.54" width="0.1524" layer="1"/>
-<wire x1="19.685" y1="3.429" x2="19.685" y2="3.49" width="0.1524" layer="1"/>
+<wire x1="17.415" y1="7.779" x2="19.415" y2="11.779" width="0" layer="19" extent="1-1"/>
+<wire x1="16.51" y1="3.49" x2="17.415" y2="7.779" width="0" layer="19" extent="1-1"/>
+<wire x1="19.685" y1="3.49" x2="16.51" y2="3.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RXD">
 <contactref element="X1" pad="4"/>
-<wire x1="24.892" y1="4.318" x2="19.431" y2="9.779" width="0.1524" layer="16"/>
-<wire x1="27.94" y1="4.318" x2="24.892" y2="4.318" width="0.1524" layer="16"/>
-<wire x1="19.431" y1="9.779" x2="19.415" y2="9.779" width="0.1524" layer="16"/>
 </signal>
 <signal name="TXD">
 <contactref element="X1" pad="6"/>
-<contactref element="JP1" pad="2"/>
-<wire x1="20.955" y1="7.747" x2="19.431" y2="7.747" width="0.1524" layer="16"/>
-<wire x1="25.4" y1="3.302" x2="20.955" y2="7.747" width="0.1524" layer="16"/>
-<wire x1="25.4" y1="2.54" x2="25.4" y2="3.302" width="0.1524" layer="16"/>
-<wire x1="19.431" y1="7.747" x2="19.415" y2="7.779" width="0.1524" layer="16"/>
 </signal>
 <signal name="GND">
 <contactref element="X1" pad="1"/>
@@ -1666,7 +1596,9 @@ design rules under a new name.</description>
 <vertex x="14.605" y="-1.27"/>
 <vertex x="36.195" y="-1.27"/>
 </polygon>
-<contactref element="JP1" pad="3"/>
+<wire x1="17.415" y1="9.779" x2="17.415" y2="11.779" width="0" layer="19" extent="1-1"/>
+<wire x1="16.51" y1="1.59" x2="17.415" y2="9.779" width="0" layer="19" extent="1-1"/>
+<wire x1="19.685" y1="1.59" x2="16.51" y2="1.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="EEG2">
 <contactref element="EEG_EL" pad="P$3"/>
@@ -1733,9 +1665,6 @@ design rules under a new name.</description>
 <wire x1="6.35" y1="7.62" x2="5.588" y2="6.858" width="0.1524" layer="1"/>
 <wire x1="6.35" y1="5.08" x2="6.35" y2="4.975" width="0.1524" layer="1"/>
 <wire x1="6.35" y1="7.62" x2="6.35" y2="7.725" width="0.1524" layer="1"/>
-</signal>
-<signal name="RDX">
-<contactref element="JP1" pad="4"/>
 </signal>
 </signals>
 </board>
