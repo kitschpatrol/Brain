@@ -28,15 +28,15 @@ class Brain {
 		uint8_t readSignalQuality();
 		uint8_t readAttention();
 		uint8_t readMeditation();
-		unsigned long* readPowerArray();
-		unsigned long readDelta();
-		unsigned long readTheta();
-		unsigned long readLowAlpha();
-		unsigned long readHighAlpha();
-		unsigned long readLowBeta();
-		unsigned long readHighBeta();
-		unsigned long readLowGamma();
-		unsigned long readMidGamma();
+		uint32_t* readPowerArray();
+		uint32_t readDelta();
+		uint32_t readTheta();
+		uint32_t readLowAlpha();
+		uint32_t readHighAlpha();
+		uint32_t readLowBeta();
+		uint32_t readHighBeta();
+		uint32_t readLowGamma();
+		uint32_t readMidGamma();
 		int rawValue;
 		
 	private:
@@ -81,7 +81,7 @@ class Brain {
 		boolean freshPacket;
 		
 		// Lighter to just make this public, instead of using the getter?
-		unsigned long eegPower[EEG_POWER_BANDS];
+		uint32_t eegPower[EEG_POWER_BANDS];
 };
 
 #endif

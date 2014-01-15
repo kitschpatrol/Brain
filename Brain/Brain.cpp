@@ -9,8 +9,6 @@ Brain::Brain(Stream &_brainSerial) {
 	init();
 }
 
-// TODO: Cast all ints and unsigned longs etc to explicit lenght types or this will crap out on Teensy3
-
 void Brain::init() {
     // TODO: Shouldn't this be 57600 for the TGAM and other fast modules ??
 	//brainSerial->begin(9600);
@@ -177,7 +175,7 @@ uint8_t Brain::parsePacket() {
 
 				// Extract the values. Possible memory savings here by creating three temp longs?
 				for(int j = 0; j < EEG_POWER_BANDS; j++) {
-					eegPower[j] = ((unsigned long)packetData[++i] << 16) | ((unsigned long)packetData[++i] << 8) | (unsigned long)packetData[++i];
+					eegPower[j] = ((uint32_t)packetData[++i] << 16) | ((uint32_t)packetData[++i] << 8) | (uint32_t)packetData[++i];
 				}
 
 				hasPower = true;
@@ -335,38 +333,38 @@ uint8_t Brain::readMeditation() {
 	return meditation;
 }
 
-unsigned long* Brain::readPowerArray() {
+uint32_t* Brain::readPowerArray() {
 	return eegPower;
 }
 
-unsigned long Brain::readDelta() {
+uint32_t Brain::readDelta() {
 	return eegPower[0];
 }
 
-unsigned long Brain::readTheta() {
+uint32_t Brain::readTheta() {
 	return eegPower[1];
 }
 
-unsigned long Brain::readLowAlpha() {
+uint32_t Brain::readLowAlpha() {
 	return eegPower[2];
 }
 
-unsigned long Brain::readHighAlpha() {
+uint32_t Brain::readHighAlpha() {
 	return eegPower[3];
 }
 
-unsigned long Brain::readLowBeta() {
+uint32_t Brain::readLowBeta() {
 	return eegPower[4];
 }
 
-unsigned long Brain::readHighBeta() {
+uint32_t Brain::readHighBeta() {
 	return eegPower[5];
 }
 
-unsigned long Brain::readLowGamma() {
+uint32_t Brain::readLowGamma() {
 	return eegPower[6];
 }
 
-unsigned long Brain::readMidGamma() {
+uint32_t Brain::readMidGamma() {
 	return eegPower[7];
 }
