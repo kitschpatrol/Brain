@@ -4,11 +4,7 @@
 #ifndef Brain_h
 #define Brain_h
 
-#if defined(ARDUINO) && ARDUINO >= 100
-  #include "Arduino.h"
-#else
-  #include "WProgram.h"
-#endif
+#include "Arduino.h"
 
 #define MAX_PACKET_LENGTH 32
 #define EEG_POWER_BANDS 8
@@ -32,9 +28,9 @@ class Brain {
 		char* readCSV();
 
 		// Individual pieces of brain data.
-		byte readSignalQuality();
-		byte readAttention();
-		byte readMeditation();
+		uint8_t readSignalQuality();
+		uint8_t readAttention();
+		uint8_t readMeditation();
 		unsigned long* readPowerArray();
 		unsigned long readDelta();
 		unsigned long readTheta();
@@ -47,26 +43,27 @@ class Brain {
 
 	private:
 		HardwareSerial* brainSerial;		
-		byte packetData[MAX_PACKET_LENGTH];
+		uint8_t packetData[MAX_PACKET_LENGTH];
 		boolean inPacket;
-		byte latestByte;
-		byte lastByte;
-		byte packetIndex;
-		byte packetLength;
-		byte checksum;
-		byte checksumAccumulator;
-		byte eegPowerLength;
+		uint8_t latestByte;
+		uint8_t lastByte;
+		uint8_t packetIndex;
+		uint8_t packetLength;
+		uint8_t checksum;
+		uint8_t checksumAccumulator;
+		uint8_t eegPowerLength;
 		boolean hasPower;
 		void clearPacket();
 		void clearEegPower();
 		boolean parsePacket();
+		
 		void printPacket();
 		void init();
 		void printCSV(); // maybe should be public?		 
 		void printDebug();
 
 		// With current hardware, at most we would have...
-		// 3 x 3 char bytes
+		// 3 x 3 char uint8_ts
 		// 8 x 10 char ulongs
 		// 10 x 1 char commas
 		// 1 x 1 char 0 (string termination)
@@ -75,18 +72,16 @@ class Brain {
 		char csvBuffer[100];
 		
 		// Longest error is
-		// 22 x 1 char bytes
+		// 22 x 1 char uint8_ts
 		// 1 x 1 char 0 (string termination)
 		char latestError[23];		
 		
-		byte signalQuality;
-		byte attention;
-		byte meditation;
+		uint8_t signalQuality;
+		uint8_t attention;
+		uint8_t meditation;
 
 		boolean freshPacket;
 		
-		// Lighter to just make this public, instead of using the getter?
-		unsigned long eegPower[EEG_POWER_BANDS];
 };
 
 #endif
