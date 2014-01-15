@@ -17,6 +17,11 @@ The attention and meditation values both run from 0 - 100. Intuitively, higher n
 
 The EEG power values — delta, theta, etc... - are a heavily filtered representation of the relative activity in different brain wavelengths. These values can not be mapped directly to physical values (e.g. volts), but are still of use when considered over time or relative to each other.
 
+###SOFTWARE SERIAL
+Past versions of this library relied on a separate branch implementing support for NewSoftSerial. Improvements to both the bundled SoftwareSerial library and the underlying class hierarchy in Arduino 1.0 has allowed a single version of the Brain library to cover both use cases. Please **do not use** the old [softserial](https://github.com/kitschpatrol/Arduino-Brain-Library/tree/softserial) branch of this library! Please see
+
+
+###EXAMPLES
 
 ###INSTALLATION
 
@@ -93,12 +98,16 @@ ermika@gmail.com
 
 ###COLOPHON
 Created by Eric Mika at NYU ITP in the spring of 2010.
+Updated for Arduino 1.0 in 2013.
+Revised and cleaned up in 2014.
 
-My thanks to Tom Igoe for his assistance during development. Thanks also to my collaborators Sofy Yuditskaya and Arturo Vidich.
+My thanks to Tom Igoe for his assistance during development. Thanks also to my collaborators Sofy Yuditskaya )and Arturo Vidich... E>
+
+Thanks to [Eero af Heurlin](https://github.com/rambo) for making some considered changes in his fork.
 
 
 ###LICENSE
-Copyright Eric Mika, 2010-2013
+Copyright Eric Mika, 2010-2014
 Licensed under the GNU Lesser General Public License.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

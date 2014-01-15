@@ -1,16 +1,14 @@
-// Arduino Brain Library
-// Basic brain example, blinks an LED on pin 13 faster as your "attention" value increases.
+// Arduino Brain Library - Brain Blinker
+
+// Description: Basic brain example, blinks an LED on pin 13 faster as your "attention" value increases.
 // Adapted from the Blink without Delay example distributed with Arduino environment.
-// Eric Mika, 2010
-#include <SoftwareSerial.h>
+// More info: https://github.com/kitschpatrol/Arduino-Brain-Library
+// Author: Eric Mika, 2010 revised in 2014
+
 #include <Brain.h>
 
-
-SoftwareSerial softSerial(10, 11); // RX, TX
-
-// Set up the brain parser, pass it the hardware serial object you want to listen on.
-//Brain brain(Serial);
-Brain brain(softSerial);
+// Set up the brain reader, pass it the hardware serial object you want to listen on.
+Brain brain(Serial);
 
 const int ledPin = 13; // 13 is handy because it's on the board.
 long interval = 500; // Changes based on attention value.
@@ -23,10 +21,6 @@ void setup() {
 	
 	// Start the hardware serial.
 	Serial.begin(9600);
-        softSerial.begin(9600);
-        
-        Serial.println("Ready!");
-        
 }
 
 void loop() {
