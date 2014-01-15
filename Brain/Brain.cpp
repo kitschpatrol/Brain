@@ -109,11 +109,11 @@ uint8_t Brain::update() {
 			//clearEegPower(); // Zeros the EEG power. Necessary if hasPower turns false... better off on the gettter end?	 
 		}
 		
-		// Keep track of the last uint8_t so we can find the sync byte pairs.
+		// Keep track of the last byte so we can find the sync byte pairs.
 		lastByte = latestByte;
 	}
 	
-	if(freshPacket) {
+	if (freshPacket) {
 		freshPacket = false;
 		return true;
 	}
@@ -150,7 +150,7 @@ uint8_t Brain::parsePacket() {
 	// Based on mindset_communications_protocol.pdf from the Neurosky Mindset SDK.
 	hasPower = false;
 	clearEegPower();	// clear the eeg power to make sure we're honest about missing values... null would be better than 0.
-	uint8_t return_byte = 0x0;
+	uint8_t return_byte = B00000000;
 	
 	for (uint8_t i = 0; i < packetLength; i++) {
 		switch (packetData[i]) {

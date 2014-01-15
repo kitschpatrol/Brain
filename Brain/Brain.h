@@ -1,6 +1,3 @@
-// To do:
-// Data simulator
-
 #ifndef Brain_h
 #define Brain_h
 
@@ -18,7 +15,7 @@ class Brain {
 		Brain(HardwareSerial &_brainSerial);	
 
 		// Run this in the main loop.
-		boolean update();
+		uint8_t update();
 
 		// String with most recent error.
 		char* readErrors();
@@ -40,7 +37,8 @@ class Brain {
 		unsigned long readHighBeta();
 		unsigned long readLowGamma();
 		unsigned long readMidGamma();
-
+		int rawValue;
+		
 	private:
 		HardwareSerial* brainSerial;		
 		uint8_t packetData[MAX_PACKET_LENGTH];
@@ -82,6 +80,8 @@ class Brain {
 
 		boolean freshPacket;
 		
+		// Lighter to just make this public, instead of using the getter?
+		unsigned long eegPower[EEG_POWER_BANDS];
 };
 
 #endif
