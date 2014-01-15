@@ -1,8 +1,8 @@
 #include "Arduino.h"
 #include "Brain.h"
 
-Brain::Brain(Stream &_brainSerial) {
-	brainSerial = &_brainSerial;
+Brain::Brain(Stream &_brainStream) {
+	brainStream = &_brainStream;
 	
 	// Keep the rest of the initialization process in a separate method in case
 	// we overload the constructor.
@@ -11,7 +11,7 @@ Brain::Brain(Stream &_brainSerial) {
 
 void Brain::init() {
     // TODO: Shouldn't this be 57600 for the TGAM and other fast modules ??
-	//brainSerial->begin(9600);
+	//brainStream->begin(9600);
 
 	freshPacket = false;
 	inPacket = false;
@@ -31,8 +31,8 @@ void Brain::init() {
 
 uint8_t Brain::update() {
     uint8_t parse_return;
-	if (brainSerial->available()) {
-		latestByte = brainSerial->read();
+	if (brainStream->available()) {
+		latestByte = brainStream->read();
 
 		// Build a packet if we know we're and not just listening for sync bytes.
 		if (inPacket) {
@@ -212,20 +212,20 @@ uint8_t Brain::parsePacket() {
 // DEPRECATED, sticking around for debug use
 void Brain::printCSV() {
 	// Print the CSV over serial
-	brainSerial->print(signalQuality, DEC);
-	brainSerial->print(",");
-	brainSerial->print(attention, DEC);
-	brainSerial->print(",");
-	brainSerial->print(meditation, DEC);
+	brainStream->print(signalQuality, DEC);
+	brainStream->print(",");
+	brainStream->print(attention, DEC);
+	brainStream->print(",");
+	brainStream->print(meditation, DEC);
 
 	if (hasPower) {
 		for(int i = 0; i < EEG_POWER_BANDS; i++) {
-			brainSerial->print(",");
-			brainSerial->print(eegPower[i], DEC);
+			brainStream->print(",");
+			brainStream->print(eegPower[i], DEC);
 		}
 	}
  
-	brainSerial->println("");
+	brainStream->println("");
 }
 
 char* Brain::readErrors() {
@@ -269,56 +269,56 @@ char* Brain::readCSV() {
 
 // For debugging, print the entire contents of the packet data array.
 void Brain::printPacket() {
-	brainSerial->print("[");
+	brainStream->print("[");
 	for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
-		brainSerial->print(packetData[i], DEC);
+		brainStream->print(packetData[i], DEC);
  
 			if (i < MAX_PACKET_LENGTH - 1) {
-				brainSerial->print(", ");
+				brainStream->print(", ");
 			}
 	}
-	brainSerial->println("]");
+	brainStream->println("]");
 }
 
 void Brain::printDebug() {
-	brainSerial->println("");	 
-	brainSerial->println("--- Start Packet ---");
-	brainSerial->print("Signal Quality: ");
-	brainSerial->println(signalQuality, DEC);
-	brainSerial->print("Attention: ");
-	brainSerial->println(attention, DEC);
-	brainSerial->print("Meditation: ");
-	brainSerial->println(meditation, DEC);
+	brainStream->println("");	 
+	brainStream->println("--- Start Packet ---");
+	brainStream->print("Signal Quality: ");
+	brainStream->println(signalQuality, DEC);
+	brainStream->print("Attention: ");
+	brainStream->println(attention, DEC);
+	brainStream->print("Meditation: ");
+	brainStream->println(meditation, DEC);
 
 	if (hasPower) {
-		brainSerial->println("");
-		brainSerial->println("EEG POWER:");
-		brainSerial->print("Delta: ");
-		brainSerial->println(eegPower[0], DEC);
-		brainSerial->print("Theta: ");
-		brainSerial->println(eegPower[1], DEC);
-		brainSerial->print("Low Alpha: ");
-		brainSerial->println(eegPower[2], DEC);
-		brainSerial->print("High Alpha: ");
-		brainSerial->println(eegPower[3], DEC);
-		brainSerial->print("Low Beta: ");
-		brainSerial->println(eegPower[4], DEC);
-		brainSerial->print("High Beta: ");
-		brainSerial->println(eegPower[5], DEC);
-		brainSerial->print("Low Gamma: ");
-		brainSerial->println(eegPower[6], DEC);
-		brainSerial->print("Mid Gamma: ");
-		brainSerial->println(eegPower[7], DEC);
+		brainStream->println("");
+		brainStream->println("EEG POWER:");
+		brainStream->print("Delta: ");
+		brainStream->println(eegPower[0], DEC);
+		brainStream->print("Theta: ");
+		brainStream->println(eegPower[1], DEC);
+		brainStream->print("Low Alpha: ");
+		brainStream->println(eegPower[2], DEC);
+		brainStream->print("High Alpha: ");
+		brainStream->println(eegPower[3], DEC);
+		brainStream->print("Low Beta: ");
+		brainStream->println(eegPower[4], DEC);
+		brainStream->print("High Beta: ");
+		brainStream->println(eegPower[5], DEC);
+		brainStream->print("Low Gamma: ");
+		brainStream->println(eegPower[6], DEC);
+		brainStream->print("Mid Gamma: ");
+		brainStream->println(eegPower[7], DEC);
 	}
 
-	brainSerial->println("");
-	brainSerial->print("Checksum Calculated: ");
-	brainSerial->println(checksumAccumulator, DEC);
-	brainSerial->print("Checksum Expected: ");
-	brainSerial->println(checksum, DEC);
+	brainStream->println("");
+	brainStream->print("Checksum Calculated: ");
+	brainStream->println(checksumAccumulator, DEC);
+	brainStream->print("Checksum Expected: ");
+	brainStream->println(checksum, DEC);
 
-	brainSerial->println("--- End Packet ---");
-	brainSerial->println("");	 
+	brainStream->println("--- End Packet ---");
+	brainStream->println("");	 
 }
 
 uint8_t Brain::readSignalQuality() {
