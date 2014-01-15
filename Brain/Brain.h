@@ -12,7 +12,7 @@ class Brain {
 	public:
 		// TK Support for soft serials. A more generic "Serial" type to inherit from would be great.
 		// More info on passing Serial objects: http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1264179436
-		Brain(HardwareSerial &_brainSerial);	
+		Brain(Stream &_brainSerial);	
 
 		// Run this in the main loop.
 		uint8_t update();
@@ -40,7 +40,7 @@ class Brain {
 		int rawValue;
 		
 	private:
-		HardwareSerial* brainSerial;		
+		Stream* brainSerial;		
 		uint8_t packetData[MAX_PACKET_LENGTH];
 		boolean inPacket;
 		uint8_t latestByte;

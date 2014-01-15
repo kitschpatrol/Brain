@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "Brain.h"
 
-Brain::Brain(HardwareSerial &_brainSerial) {
+Brain::Brain(Stream &_brainSerial) {
 	brainSerial = &_brainSerial;
 	
 	// Keep the rest of the initialization process in a separate method in case
@@ -13,7 +13,7 @@ Brain::Brain(HardwareSerial &_brainSerial) {
 
 void Brain::init() {
     // TODO: Shouldn't this be 57600 for the TGAM and other fast modules ??
-	brainSerial->begin(9600);
+	//brainSerial->begin(9600);
 
 	freshPacket = false;
 	inPacket = false;

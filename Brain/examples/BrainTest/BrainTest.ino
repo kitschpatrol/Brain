@@ -2,11 +2,15 @@
 // Basic brain example, blinks an LED on pin 13 faster as your "attention" value increases.
 // Adapted from the Blink without Delay example distributed with Arduino environment.
 // Eric Mika, 2010
-
+#include <SoftwareSerial.h>
 #include <Brain.h>
 
+
+SoftwareSerial softSerial(10, 11); // RX, TX
+
 // Set up the brain parser, pass it the hardware serial object you want to listen on.
-Brain brain(Serial);
+//Brain brain(Serial);
+Brain brain(softSerial);
 
 const int ledPin = 13; // 13 is handy because it's on the board.
 long interval = 500; // Changes based on attention value.
@@ -19,6 +23,10 @@ void setup() {
 	
 	// Start the hardware serial.
 	Serial.begin(9600);
+        softSerial.begin(9600);
+        
+        Serial.println("Ready!");
+        
 }
 
 void loop() {
