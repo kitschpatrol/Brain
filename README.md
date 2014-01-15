@@ -99,11 +99,11 @@ ermika@gmail.com
 ###COLOPHON
 Created by Eric Mika at NYU ITP in the spring of 2010.
 Updated for Arduino 1.0 in 2013.
-Revised and cleaned up in 2014.
+Revised, retested, and cleaned up in early 2014.
 
-My thanks to Tom Igoe for his assistance during development. Thanks also to my collaborators Sofy Yuditskaya )and Arturo Vidich... E>
+My thanks to Tom Igoe for his assistance during development. Thanks to my collaborators Sofy Yuditskaya and Arturo Vidich. (E>)
 
-Thanks to [Eero af Heurlin](https://github.com/rambo) for making some considered changes in his fork.
+Thanks also to [Eero af Heurlin](https://github.com/rambo) for making some considered changes in his fork.
 
 
 ###LICENSE
