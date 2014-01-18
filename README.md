@@ -22,6 +22,11 @@ Past versions of this library relied on a separate branch implementing support f
 
 
 ###EXAMPLES
+Three examples are provided with the library:
+
+- `BrainBlinker.ino` blinks an LED faster as your "attention" value increases.
+- `BrainSerialTest.ino` prints out a CSV of brain data over serial.
+- `BrainSoftSerialTest.ino` reads brain data over SoftwareSerial and prints a CSV over hardware serial. 
 
 ###INSTALLATION
 
