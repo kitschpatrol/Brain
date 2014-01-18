@@ -17,6 +17,9 @@ The attention and meditation values both run from 0 - 100. Intuitively, higher n
 
 The EEG power values — delta, theta, etc... - are a heavily filtered representation of the relative activity in different brain wavelengths. These values can not be mapped directly to physical values (e.g. volts), but are still of use when considered over time or relative to each other.
 
+###Repository Rename
+This project was formerly "Arduino-Brain-Library" on GitHub, but was renamed to just "Brain" in 2014 to play nicely with the Arduino IDE's new ""Sketch --> Import Library..." menu item.
+
 ###SOFTWARE SERIAL
 Past versions of this library relied on a separate branch implementing support for NewSoftSerial. Improvements to both the bundled SoftwareSerial library and the underlying class hierarchy in Arduino 1.0 has allowed a single version of the Brain library to cover both use cases. Please **do not use** the old [softserial](https://github.com/kitschpatrol/Arduino-Brain-Library/tree/softserial) branch of this library! Please see
 
@@ -29,8 +32,13 @@ Three examples are provided with the library:
 - `BrainSoftSerialTest.ino` reads brain data over SoftwareSerial and prints a CSV over hardware serial. 
 
 ###INSTALLATION
+There are two ways to install the library:
+#####Manual Installation
+[Download the repository's zip file](https://codeload.github.com/kitschpatrol/Brain/zip/master), decompress, rename it to Brain, and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the Mac, this is ~/Documents/Arduino/libraries by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
 
-Decompress the zip and drag "Brain" folder to Arduino's "libraries" folder inside your sketch folder. (On the Mac, this is ~/Documents/Arduino/libraries by default. You may need to create this folder if it does not exist.) Restart the Arduino environment.
+#####Installation through the Arduino IDE
+(TODO, need a proper release on GitHub to make this work well.)
+Download the repository as a zip, and then in the Arduino IDE go to ""Sketch --> Import Library..." and find the Brain.zip file you just downloaded.
 
 
 ###FUNCTION OVERVIEW
