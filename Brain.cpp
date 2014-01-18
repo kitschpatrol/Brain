@@ -16,11 +16,11 @@ void Brain::init() {
     inPacket = false;
     packetIndex = 0;
     packetLength = 0;
-    checksum = 0;
-    checksumAccumulator = 0;
     eegPowerLength = 0;
     hasPower = false;
-    
+    checksum = 0;
+	checksumAccumulator = 0;
+	
     signalQuality = 200;
     attention = 0;
     meditation = 0;
@@ -43,7 +43,7 @@ boolean Brain::update() {
                 if (packetLength > MAX_PACKET_LENGTH) {
                     // Packet exceeded max length
                     // Send an error
-                    sprintf(latestError, "ERROR: Packet too long");
+                    sprintf(latestError, "ERROR: Packet too long %i", packetLength);
                     inPacket = false;
                 }
             }
@@ -97,8 +97,6 @@ boolean Brain::update() {
             // Start of packet
             inPacket = true;
             packetIndex = 0;
-            packetLength = 0; // Technically not necessarry.
-            checksum = 0; // Technically not necessary.
             checksumAccumulator = 0;
         }
         
@@ -135,6 +133,8 @@ boolean Brain::parsePacket() {
     // Returns true if passing succeeds
     hasPower = false;
     boolean parseSuccess = true;
+	int rawValue = 0;
+	
     clearEegPower();    // clear the eeg power to make sure we're honest about missing values
     
     for (uint8_t i = 0; i < packetLength; i++) {
@@ -167,7 +167,7 @@ boolean Brain::parsePacket() {
                 // We dont' use this value so let's skip it and just increment i
                 // uint8_t packetLength = packetData[++i];
                 i++;
-                int checksum = ((int)packetData[++i] << 8) | packetData[++i];
+                rawValue = ((int)packetData[++i] << 8) | packetData[++i];
                 break;
             default:
                 // Broken packet ?
