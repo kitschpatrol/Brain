@@ -107,9 +107,9 @@ Brain data comes in quite slowly... expect a fresh packet every second or so.
 
 ###CONTACT
 Eric Mika  
-ermika@gmail.com  
-[http://frontiernerds.com](http://frontiernerds.com)
-
+eric@ericmika.com  
+[https://github.com/kitschpatrol](https://github.com/kitschpatrol)  
+[http://frontiernerds.com](http://frontiernerds.com)  
 
 ###COLOPHON
 Created by Eric Mika at NYU ITP in the spring of 2010.
@@ -122,7 +122,7 @@ Thanks also to [Eero af Heurlin](https://github.com/rambo) for making some consi
 
 
 ###LICENSE
-Copyright Eric Mika, 2010-2014
+Copyright Eric Mika, 2010-2015
 Licensed under the GNU Lesser General Public License.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
