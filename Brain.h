@@ -8,7 +8,7 @@
 
 class Brain {
     public:
-        Brain(Stream &_brainStream);    
+        Brain(Stream &_brainStream);
 
         // Run this in the main loop.
         boolean update();
@@ -33,9 +33,9 @@ class Brain {
         uint32_t readHighBeta();
         uint32_t readLowGamma();
         uint32_t readMidGamma();
-        
+
     private:
-        Stream* brainStream;        
+        Stream* brainStream;
         uint8_t packetData[MAX_PACKET_LENGTH];
         boolean inPacket;
         uint8_t latestByte;
@@ -49,10 +49,10 @@ class Brain {
         void clearPacket();
         void clearEegPower();
         boolean parsePacket();
-        
+
         void printPacket();
         void init();
-        void printCSV(); // maybe should be public?      
+        void printCSV(); // maybe should be public?
         void printDebug();
 
         // With current hardware, at most we would have...
@@ -61,20 +61,20 @@ class Brain {
         // 10 x 1 char commas
         // 1 x 1 char 0 (string termination)
         // -------------------------
-        // 100 characters       
+        // 100 characters
         char csvBuffer[100];
-        
+
         // Longest error is
         // 22 x 1 char uint8_ts
         // 1 x 1 char 0 (string termination)
-        char latestError[23];       
-        
+        char latestError[23];
+
         uint8_t signalQuality;
         uint8_t attention;
         uint8_t meditation;
 
         boolean freshPacket;
-        
+
         // Lighter to just make this public, instead of using the getter?
         uint32_t eegPower[EEG_POWER_BANDS];
 };
