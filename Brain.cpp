@@ -3,7 +3,7 @@
 
 Brain::Brain(Stream &_brainStream) {
     brainStream = &_brainStream;
-    
+
     // Keep the rest of the initialization process in a separate method in case
     // we overload the constructor.
     init();
@@ -20,7 +20,7 @@ void Brain::init() {
     hasPower = false;
     checksum = 0;
 	checksumAccumulator = 0;
-	
+
     signalQuality = 200;
     attention = 0;
     meditation = 0;
@@ -34,7 +34,7 @@ boolean Brain::update() {
 
         // Build a packet if we know we're and not just listening for sync bytes.
         if (inPacket) {
-        
+
             // First byte after the sync bytes is the length of the upcoming packet.
             if (packetIndex == 0) {
                 packetLength = latestByte;
@@ -49,7 +49,7 @@ boolean Brain::update() {
             }
             else if (packetIndex <= packetLength) {
                 // Run of the mill data bytes.
-                
+
                 // Print them here
 
                 // Store the byte in an array for parsing later.
@@ -60,7 +60,7 @@ boolean Brain::update() {
             }
             else if (packetIndex > packetLength) {
                 // We're at the end of the data payload.
-                
+
                 // Check the checksum.
                 checksum = latestByte;
                 checksumAccumulator = 255 - checksumAccumulator;
@@ -68,7 +68,7 @@ boolean Brain::update() {
                 // Do they match?
                 if (checksum == checksumAccumulator) {
                     boolean parseSuccess = parsePacket();
-                    
+
                     if (parseSuccess) {
                         freshPacket = true;
                     }
@@ -84,14 +84,14 @@ boolean Brain::update() {
                     // good place to print the packet if debugging
                 }
                 // End of packet
-                
+
                 // Reset, prep for next packet
                 inPacket = false;
             }
-            
+
             packetIndex++;
         }
-        
+
         // Look for the start of the packet
         if ((latestByte == 170) && (lastByte == 170) && !inPacket) {
             // Start of packet
@@ -99,11 +99,11 @@ boolean Brain::update() {
             packetIndex = 0;
             checksumAccumulator = 0;
         }
-        
+
         // Keep track of the last byte so we can find the sync byte pairs.
         lastByte = latestByte;
     }
-    
+
     if (freshPacket) {
         freshPacket = false;
         return true;
@@ -111,13 +111,13 @@ boolean Brain::update() {
     else {
         return false;
     }
-    
+
 }
 
 void Brain::clearPacket() {
     for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
         packetData[i] = 0;
-    }    
+    }
 }
 
 void Brain::clearEegPower() {
@@ -134,9 +134,9 @@ boolean Brain::parsePacket() {
     hasPower = false;
     boolean parseSuccess = true;
 	int rawValue = 0;
-	
+
     clearEegPower();    // clear the eeg power to make sure we're honest about missing values
-    
+
     for (uint8_t i = 0; i < packetLength; i++) {
         switch (packetData[i]) {
             case 0x2:
@@ -149,7 +149,7 @@ boolean Brain::parsePacket() {
                 meditation = packetData[++i];
                 break;
             case 0x83:
-                // ASIC_EEG_POWER: eight big-endian 3-uint8_t unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values           
+                // ASIC_EEG_POWER: eight big-endian 3-uint8_t unsigned integer values representing delta, theta, low-alpha high-alpha, low-beta, high-beta, low-gamma, and mid-gamma EEG band power values
                 // The next uint8_t sets the length, usually 24 (Eight 24-bit numbers... big endian?)
                 // We dont' use this value so let's skip it and just increment i
                 i++;
@@ -200,7 +200,7 @@ void Brain::printCSV() {
             brainStream->print(eegPower[i], DEC);
         }
     }
- 
+
     brainStream->println("");
 }
 
@@ -210,12 +210,12 @@ char* Brain::readErrors() {
 
 char* Brain::readCSV() {
     // spit out a big string?
-    // find out how big this really needs to be 
+    // find out how big this really needs to be
     // should be popped off the stack once it goes out of scope?
     // make the character array as small as possible
-    
+
     if(hasPower) {
-        
+
         sprintf(csvBuffer,"%d,%d,%d,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
             signalQuality,
             attention,
@@ -229,7 +229,7 @@ char* Brain::readCSV() {
             eegPower[6],
             eegPower[7]
         );
-        
+
         return csvBuffer;
     }
     else {
@@ -238,7 +238,7 @@ char* Brain::readCSV() {
             attention,
             meditation
         );
-        
+
         return csvBuffer;
     }
 }
@@ -248,7 +248,7 @@ void Brain::printPacket() {
     brainStream->print("[");
     for (uint8_t i = 0; i < MAX_PACKET_LENGTH; i++) {
         brainStream->print(packetData[i], DEC);
- 
+
             if (i < MAX_PACKET_LENGTH - 1) {
                 brainStream->print(", ");
             }
@@ -257,7 +257,7 @@ void Brain::printPacket() {
 }
 
 void Brain::printDebug() {
-    brainStream->println("");    
+    brainStream->println("");
     brainStream->println("--- Start Packet ---");
     brainStream->print("Signal Quality: ");
     brainStream->println(signalQuality, DEC);
@@ -294,7 +294,7 @@ void Brain::printDebug() {
     brainStream->println(checksum, DEC);
 
     brainStream->println("--- End Packet ---");
-    brainStream->println("");    
+    brainStream->println("");
 }
 
 uint8_t Brain::readSignalQuality() {
