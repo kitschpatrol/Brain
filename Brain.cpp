@@ -19,7 +19,7 @@ void Brain::init() {
     eegPowerLength = 0;
     hasPower = false;
     checksum = 0;
-	checksumAccumulator = 0;
+    checksumAccumulator = 0;
 
     signalQuality = 200;
     attention = 0;
@@ -133,7 +133,7 @@ boolean Brain::parsePacket() {
     // Returns true if passing succeeds
     hasPower = false;
     boolean parseSuccess = true;
-	int rawValue = 0;
+    int rawValue = 0;
 
     clearEegPower();    // clear the eeg power to make sure we're honest about missing values
 
