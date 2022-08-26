@@ -133,7 +133,7 @@ boolean Brain::parsePacket() {
     // Returns true if passing succeeds
     hasPower = false;
     boolean parseSuccess = true;
-    int rawValue = 0;
+    // int rawValue = 0;
 
     clearEegPower();    // clear the eeg power to make sure we're honest about missing values
 
@@ -156,7 +156,11 @@ boolean Brain::parsePacket() {
 
                 // Extract the values
                 for (int j = 0; j < EEG_POWER_BANDS; j++) {
-                    eegPower[j] = ((uint32_t)packetData[++i] << 16) | ((uint32_t)packetData[++i] << 8) | (uint32_t)packetData[++i];
+                	uint8_t a,b,c;
+                    a = packetData[++i];
+                    b = packetData[++i];
+                    c = packetData[++i];
+                    eegPower[j] = ((uint32_t)a << 16) | ((uint32_t)b << 8) | (uint32_t)c;
                 }
 
                 hasPower = true;
@@ -166,8 +170,8 @@ boolean Brain::parsePacket() {
             case 0x80:
                 // We dont' use this value so let's skip it and just increment i
                 // uint8_t packetLength = packetData[++i];
-                i++;
-                rawValue = ((int)packetData[++i] << 8) | packetData[++i];
+                // rawValue = ((int)packetData[++i] << 8) | packetData[++i];
+                i += 3;
                 break;
             default:
                 // Broken packet ?
