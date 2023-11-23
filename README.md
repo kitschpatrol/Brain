@@ -24,6 +24,21 @@ The attention and meditation values both run from 0 – 100. Intuitively, higher
 
 The EEG power values — delta, theta, etc... — are a heavily filtered representation of the relative activity in different brain wavelengths. These values can not be mapped directly to physical values (e.g. volts), but are still of use when considered over time or relative to each other.
 
+## Compatibility
+
+This library expects a certain serial protocol from attached devices. Hardware that uses a different protocol won't work and you will see serial or parsing related errors.
+
+| Device                     | Compatibility |
+| -------------------------- | ------------- |
+| Star Wars Force Trainer    | ✅ Yes        |
+| Mattel Mindflex            | ✅ Yes        |
+| Star Wars Force Trainer II | ❌ No         |
+| Neurosky MindWave Mobile 2 | ❌ No         |
+
+If you've tested with additional headsets, please feel free to open an issue to report your findings.
+
+Support for additional devices is definitely feasible, and pull requests are welcome, but I currently don't have the time or hardware access to implement this on my own.
+
 ## Repository rename
 
 This project was formerly `Arduino-Brain-Library` on GitHub, but was renamed to just `Brain` in 2014 to play nicely with the Arduino IDE's new "Sketch → Import Library..." menu item.
