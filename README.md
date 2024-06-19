@@ -45,7 +45,7 @@ This project was formerly `Arduino-Brain-Library` on GitHub, but was renamed to 
 
 ## Software serial
 
-Past versions of this library relied on a separate branch implementing support for NewSoftSerial. Improvements to both the bundled SoftwareSerial library and the underlying class hierarchy in Arduino 1.0 has allowed a single version of the Brain library to cover both use cases. Please **do not use** the old [softserial](https://github.com/kitschpatrol/Brain/tree/softserial) branch of this library! Please see
+Past versions of this library relied on a separate branch implementing support for NewSoftSerial. Improvements to both the bundled SoftwareSerial library and the underlying class hierarchy in Arduino 1.0 has allowed a single version of the Brain library to cover both use cases. Please **do not use** the old [softserial](https://github.com/kitschpatrol/Brain/tree/softserial) branch of this library!
 
 ## Examples
 
